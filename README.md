@@ -14,33 +14,33 @@ The stack:
 
 ## 🚀 Project Structure
 
-librify/
-├── backend/ # FastAPI backend
-│ ├── app/
-│ │ ├── main.py # FastAPI entry point
-│ │ ├── models.py # SQLAlchemy models
-│ │ ├── schemas.py # Pydantic schemas
-│ │ ├── crud.py # DB operations
-│ │ ├── database.py # DB connection setup
-│ │ └── routers/ # API routes
-│ │ └── books.py
-│ ├── requirements.txt # Python dependencies
-│ └── Dockerfile # Backend Dockerfile
+```plaintext
+librify
+├── backend
+│   ├── app
+│   │   ├── main.py          # FastAPI entrypoint
+│   │   ├── routers          # API route definitions
+│   │   ├── models           # Database models
+│   │   ├── schemas          # Pydantic schemas
+│   │   ├── services         # Business logic
+│   │   ├── utils            # Helper functions
+│   │   └── config           # Configurations (DB, env, etc.)
+│   ├── tests                # Backend tests
+│   ├── requirements.txt     # Python dependencies
+│   └── Dockerfile           # Backend container setup
 │
-├── frontend/ # Next.js frontend
-│ ├── pages/
-│ │ ├── index.tsx # Homepage UI
-│ │ └── _app.tsx
-│ ├── components/ # Reusable components
-│ ├── package.json # Node dependencies
-│ └── Dockerfile # Frontend Dockerfile
+├── frontend
+│   ├── pages                # Next.js pages
+│   ├── components           # UI components
+│   ├── styles               # Styling
+│   ├── utils                # Frontend utils
+│   ├── package.json         # Node.js dependencies
+│   └── tsconfig.json        # TypeScript configuration
 │
-├── docker-compose.yml # Orchestrates services
-├── README.md # Project documentation
-└── .gitignore # Ignored files
-
-
-
+├── docker-compose.yml       # Orchestration for backend, frontend & Postgres
+├── README.md                # Project documentation
+└── .gitignore               # Ignore unnecessary files
+```
 ---
 
 ## ⚡ Getting Started
