@@ -51,26 +51,46 @@ git clone https://github.com/your-username/librify.git
 cd librify
 ```
 
-### 2. Run postgresql with Docker
+### 2. Configure environment variables
+Create a `.env` file inside `backend/` with the database connection string:
 ```bash
-docker run --name librify-db -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=librify -p 5432:5432 -d postgres
+cp backend/env.example backend/.env
+```
+Feel free to edit the values to match your local database credentials.
+
+### 3. One-command helpers (Makefile)
+Common tasks now have shortcuts:
+```bash
+make help          # list available commands
+make db-up         # start postgres via docker compose
+make backend-install
+make migrate       # run alembic migrations
+make backend-run   # start FastAPI with uvicorn
 ```
 
-### 3. Backend setup (FastAPI)
-```bash 
-cd backend
-python -m venv venv
-source venv/bin/activate   # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-uvicorn app.main:app --reload
+### 4. End-to-end backend setup
+```bash
+make db-up
+make backend-install
+make migrate
+make backend-run
 ```
 
-### 4. Frontend setup (Next JS)
+### 5. Frontend setup (Next JS) *if/when available*
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
+
+---
+
+## 🗂 Database migrations
+
+- Migrations live under `backend/alembic`.
+- Apply outstanding migrations: `make migrate`.
+- Generate a new migration after editing SQLAlchemy models: `make revision message="add new column"`.
+- The FastAPI app now relies on migrations instead of calling `Base.metadata.create_all`, so always run `make migrate` after pulling new changes.
 
 
 

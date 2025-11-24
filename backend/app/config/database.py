@@ -10,6 +10,8 @@ load_dotenv()
 
 #get the database url from the environment variables
 DATABASE_URL = os.getenv("DATABASE_URL")
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL is not set. Please add it to your environment or .env file.")
 
 #create the engine
 engine = create_engine(DATABASE_URL)
